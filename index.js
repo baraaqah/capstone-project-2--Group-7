@@ -20,11 +20,13 @@ window.addEventListener('load', function () {
 	const password = document.querySelector('#inputPassword')
 
 	togglePassword.addEventListener('click', () => {
-		const type = password.getAttribute('type') === 'password' ? 'text' : 'password'
-
-		password.setAttribute('type', type)
-
-		togglePasswordIcon.classList.toggle('bi-eye')
+		if (password.getAttribute('type') === 'password') {
+			password.setAttribute('type', 'text')
+			togglePasswordIcon.classList.replace('bi-eye', 'bi-eye-slash')
+		} else {
+			password.setAttribute('type', 'password')
+			togglePasswordIcon.classList.replace('bi-eye-slash', 'bi-eye')
+		}
 	})
 
 	// form validation
