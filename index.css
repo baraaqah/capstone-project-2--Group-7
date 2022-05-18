@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header.sh-header {
+    background-color: rgb(7, 146, 146);
+    padding: 1em 1em 1em 1em;
+}
+.sh-background {
+    background-color: #d3f7eb;
+}
+
+.sh-header-container {
+    display: flex;
+    place-content: space-between;
+}
+
+.sh-header a,
+.sh-header a:visited {
+    text-decoration: none;
+    color: azure;
+}
+
+.sh-header a:hover,
+.sh-header a:active {
+    color: #f0bf2b;
+}
+
+.sh-header ul {
+    font-weight: bold;
+    margin-top: 5em;
+}
+
+.sh-header ul li {
+    list-style: none;
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+.sh-header img {
+    object-fit: cover;
+}
+
+.sh-header span {
+    color: black;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+.sh-header h2 {
+    font-size: 1.5em;
+}
+
+.sh-header nav {
+    display: none;
+    position: fixed;
+    z-index: 600;
+    width: 30%;
+    right: 0;
+    top: 0;
+    background-color: #f5b800;
+    padding: 1em;
+}
+
+.mobile-menu-exit {
+    float: right;
+}
+
+.sh-header nav.menu-btn {
+    display: block;
+}
+
+@media only screen and (min-width: 760px) {
+
+    .mobile-menu,
+    .mobile-menu-exit {
+        display: none;
+    }
+
+    .sh-header-container {
+        display: grid;
+        grid-template-columns: 200px auto;
+
+    }
+
+    .sh-header nav {
+        display: flex;
+        background: none;
+        position: unset;
+        height: auto;
+        width: 100%;
+        padding: 0;
+    }
+
+    .sh-header ul {
+        display: flex;
+    }
+
+    .sh-header ul li {
+        margin-left: 2em;
+        margin-top: -3.5em;
+    }
+}
+
+.form-floating-group input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-floating-group + span {
+    cursor: pointer;
+}
