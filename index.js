@@ -33,7 +33,7 @@ window.addEventListener('load', function () {
 	const username = document.getElementById('inputUsername')
 	const email = document.getElementById('inputEmail')
 	const phone = document.getElementById('inputPhone')
-	// const password = document.getElementById('inputPassword')
+	const passwordError = document.getElementById('pwd-err')
 	const confirmPassword = document.getElementById('inputConfirmPassword')
 
 	form.addEventListener('submit', e => {
@@ -49,12 +49,14 @@ window.addEventListener('load', function () {
 			? markError(email, 'Email is not valid.')
 			: markSuccess(email)
 		maxLength(phone.value, 11) ? markSuccess(phone) : markError(phone, 'Phone Number must be 11 digits.')
-		isRequired(password.value) ? markSuccess(password) : markError(password, 'Password is required.')
+		markPassword(password, passwordError)
 		!isRequired(confirmPassword.value)
 			? markError(confirmPassword, 'Password is required.')
 			: password.value !== confirmPassword.value
 			? markError(confirmPassword, 'Password does not match.')
 			: markSuccess(confirmPassword)
+
+		markRadioGender()
 	}
 })
 
@@ -94,4 +96,32 @@ function markSuccess(input) {
 	errorField.style.display = 'none'
 
 	input.className = 'form-control is-valid'
+}
+
+function markPassword(password, passwordError) {
+	if (isRequired(password.value)) {
+		passwordError.innerText = ''
+		passwordError.style.display = 'none'
+		password.className = 'form-control is-valid'
+	} else {
+		passwordError.innerText = 'Password is required.'
+		passwordError.style.display = 'block'
+		password.className = 'form-control is-invalid'
+	}
+}
+
+function markRadioGender() {
+	const radios = document.querySelectorAll('input[name="gender"]')
+	const lastRadio = radios[radios.length - 1]
+	const lastRadioParent = lastRadio.parentElement
+
+	const errorField = lastRadioParent.nextElementSibling
+
+	if (document.querySelector('input[name="gender"]:checked')) {
+		errorField.innerText = ''
+		errorField.style.display = 'none'
+	} else {
+		errorField.innerText = 'Please select a gender.'
+		errorField.style.display = 'block'
+	}
 }
